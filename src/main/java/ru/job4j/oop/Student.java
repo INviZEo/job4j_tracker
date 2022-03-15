@@ -9,7 +9,6 @@ public class Student {
         petya.song();
         petya.music();
         petya.song();
-
     }
     public void music() {
         System.out.println("tra tra tra");
