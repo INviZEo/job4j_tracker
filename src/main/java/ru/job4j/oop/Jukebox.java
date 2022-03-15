@@ -13,11 +13,11 @@ public class Jukebox {
     }
 
     public static void main(String[] args) {
-       Jukebox Dave = new Jukebox();
-       Dave.music(1);
-       Dave.music(2);
-       Dave.music(3);
-       Dave.music(4);
+       Jukebox dave = new Jukebox();
+       dave.music(1);
+       dave.music(2);
+       dave.music(3);
+       dave.music(4);
 
     }
 }
