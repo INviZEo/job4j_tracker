@@ -11,7 +11,6 @@ public class Error {
         error.check();
     }
 
-
     public Error(boolean active, int status, String massage) {
         this.active = active;
         this.status = status;
