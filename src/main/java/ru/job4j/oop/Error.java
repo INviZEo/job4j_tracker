@@ -6,11 +6,6 @@ public class Error {
     private int status;
     private String massage;
 
-    public static void main(String[] args) {
-        Error error = new Error(false, 1, "fault");
-        error.check();
-    }
-
     public Error(boolean active, int status, String massage) {
         this.active = active;
         this.status = status;
@@ -21,5 +16,10 @@ public class Error {
         System.out.println(active);
         System.out.println(status);
         System.out.println(massage);
+    }
+
+        public static void main(String[] args) {
+            Error error = new Error(false, 1, "fault");
+            error.check();
     }
 }
