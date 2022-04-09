@@ -36,7 +36,7 @@ public class Profession {
         }
     }
 
-    public class Builder extends Engineer{
+    public class Builder extends Engineer {
         private int build;
 
         public Builder(String name, String surname, String education, String birthday, String did, int build) {
@@ -49,7 +49,6 @@ public class Profession {
         private String quality;
 
         DiagnosisHeal diagnosisHeal = new DiagnosisHeal("Пациент здоров");
-        
 
         public Doctor(String name, String surname, String education, String birthday, String quality) {
             super(name, surname, education, birthday);
@@ -58,7 +57,6 @@ public class Profession {
     }
 
     public class Surgeon extends Doctor {
-
 
         public Surgeon(String name, String surname, String education, String birthday, String quality) {
             super(name, surname, education, birthday, quality);
