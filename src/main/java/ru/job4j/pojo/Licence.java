@@ -11,8 +11,12 @@ public class Licence {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Licence licence = (Licence) o;
         return Objects.equals(owner, licence.owner) && Objects.equals(model, licence.model)
                 && Objects.equals(code, licence.code) && Objects.equals(created, licence.created);
