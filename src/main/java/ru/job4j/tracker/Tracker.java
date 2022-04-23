@@ -10,11 +10,9 @@ public class Tracker {
     public boolean delete(int id) {
         boolean del = false;
         int index = indexOf(id);
-        boolean rss = index != -1;
-        if (rss) {
-            index = index;
-        }
-        if (index != -1) {
+        if (index == -1) {
+            System.out.println("Условие неверно");
+        } else {
             System.arraycopy(items, index + 1, items, index, size - index - 1);
             del = true;
             items[size - 1] = null;
@@ -37,11 +35,9 @@ public class Tracker {
     public boolean replace(int id, Item item) {
         boolean rsl = false;
         int index = indexOf(id);
-        boolean rss = index != -1;
-        if (rss) {
-            items[index] = item;
-        }
-        if (index != -1) {
+        if (index == -1) {
+            System.out.println("Условие неверно");
+        } else {
             item.setId(id);
             items[index] = item;
             rsl = true;
