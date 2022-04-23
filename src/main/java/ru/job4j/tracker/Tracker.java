@@ -12,6 +12,7 @@ public class Tracker {
         int index = indexOf(id);
         boolean rss = index != -1;
         if (rss) {
+            index = index;
         }
         if (index != -1) {
             System.arraycopy(items, index + 1, items, index, size - index - 1);
