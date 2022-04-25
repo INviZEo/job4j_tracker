@@ -8,13 +8,10 @@ public class Tracker {
     private int size = 0;
 
     public boolean delete(int id) {
-        boolean del = false;
         int index = indexOf(id);
-        if (index == -1) {
-            System.out.println("Условие неверно");
-        } else {
+        boolean del = index != 1;
+        if (del) {
             System.arraycopy(items, index + 1, items, index, size - index - 1);
-            del = true;
             items[size - 1] = null;
             size--;
         }
@@ -33,14 +30,11 @@ public class Tracker {
     }
 
     public boolean replace(int id, Item item) {
-        boolean rsl = false;
         int index = indexOf(id);
-        if (index == -1) {
-            System.out.println("Условие неверно");
-        } else {
+        boolean rsl = index != 1;
+        if (rsl) {
             item.setId(id);
             items[index] = item;
-            rsl = true;
         }
         return rsl;
     }
