@@ -42,10 +42,6 @@ public class Item {
         this.name = name;
     }
 
-    public void main(String[] args)  {
-        this.created = LocalDateTime.now();
-    }
-
     @Override
     public String toString() {
         return "Item{"
