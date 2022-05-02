@@ -60,15 +60,29 @@ public class StartUI {
                 } else {
                     System.out.println("Заявка с введенным id: " + id + " -" + " не найдена.");
                 }
+            } else if (select == 5) {
+                System.out.println("=== Find items by name ===");
+                System.out.print("Enter name: ");
+                String name = scanner.nextLine();
+                Item[] items = tracker.findByName(name);
+                if (items.length > 0) {
+                    for (Item item : items) {
+                        System.out.println(item);
+                    }
+                } else {
+                    System.out.println("Заявки с именем: " + name + " -" + " не найдены.");
+                }
             }
         }
     }
 
     private void showMenu() {
         String[] menu = {
-                "Add new Item", "Show all items", "Edit item",
-                "Delete item", "Find item by id", "Find items by name",
-                "Exit Program"
+                "Add new Item (Добавить новую заявку)", "Show all items (Показать все заявки)",
+                "Edit item (Изменить заявку)",
+                "Delete item (Удалить заявку)", "Find item by id (Найти заявку по id)",
+                "Find items by name (Найти заявку по имени заявки)",
+                "Exit Program (Выход из программы)"
         };
         System.out.println("Menu:");
         for (int i = 0; i < menu.length; i++) {
