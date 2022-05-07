@@ -28,7 +28,7 @@ public class StartUI {
             } else if (select == 2) {
                 System.out.println("=== Edit item ===");
                 System.out.print("Enter id: ");
-                int id = Integer.parseInt( input.askStr(""));
+                int id = Integer.parseInt(input.askStr(""));
                 System.out.print("Enter name: ");
                 String name =  input.askStr("");
                 Item item = new Item(name);
@@ -40,7 +40,7 @@ public class StartUI {
             } else if (select == 3) {
                 System.out.println("=== Delete item ===");
                 System.out.print("Enter id: ");
-                int id = Integer.parseInt( input.askStr(""));
+                int id = Integer.parseInt(input.askStr(""));
                 if (tracker.delete(id)) {
                     System.out.println("Заявка удалена успешно.");
                 } else {
@@ -49,7 +49,7 @@ public class StartUI {
             } else if (select == 4) {
                 System.out.println("=== Find item by id ===");
                 System.out.print("Enter id: ");
-                int id = Integer.parseInt( input.askStr(""));
+                int id = Integer.parseInt(input.askStr(""));
                 Item item = tracker.findById(id);
                 if (item != null) {
                     System.out.println(item);
