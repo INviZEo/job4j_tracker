@@ -1,6 +1,7 @@
 package ru.job4j.tracker;
 
 public class CreateAction implements UserAction {
+
     private final Output out;
 
     public CreateAction(Output out) {
@@ -9,7 +10,7 @@ public class CreateAction implements UserAction {
 
     @Override
     public String name() {
-        return "Create";
+        return "Create item";
     }
 
     @Override
