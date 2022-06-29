@@ -129,4 +129,56 @@ public class StartUITest {
                         + "=== Exit program ===" + ln
         ));
     }
+
+    @Test
+    public void findActionByName() {
+        Output out = new StubOutput();
+        Tracker tracker = new Tracker();
+        Item one = tracker.add(new Item("test1"));
+        Input in = new StubInput(
+                new String[] {"0", one.getName(), "1"}
+        );
+        UserAction[] actions = new UserAction[]{
+                new FindActionByName(out),
+                new ExitAction(out)
+        };
+        new StartUI(out).init(in, tracker, actions);
+        String ln = System.lineSeparator();
+        assertThat(out.toString(), is(
+                "Menu:" + ln
+                        + "0. Find item by name" + ln
+                        + "1. Exit program" + ln
+                        + one + ln
+                        + "Menu:" + ln
+                        + "0. Find item by name" + ln
+                        + "1. Exit program" + ln
+                        + "=== Exit program ===" + ln
+        ));
+    }
+
+    @Test
+    public void findActionById() {
+        Output out = new StubOutput();
+        Tracker tracker = new Tracker();
+        Item one = tracker.add(new Item("test1"));
+        Input in = new StubInput(
+                new String[] {"0", String.valueOf(one.getId()), "1"}
+        );
+        UserAction[] actions = new UserAction[]{
+                new FindActionById(out),
+                new ExitAction(out)
+        };
+        new StartUI(out).init(in, tracker, actions);
+        String ln = System.lineSeparator();
+        assertThat(out.toString(), is(
+                "Menu:" + ln
+                        + "0. Find item by id" + ln
+                        + "1. Exit program" + ln
+                        + one + ln
+                        + "Menu:" + ln
+                        + "0. Find item by id" + ln
+                        + "1. Exit program" + ln
+                        + "=== Exit program ===" + ln
+        ));
+    }
 }
