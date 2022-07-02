@@ -2,15 +2,17 @@ package ru.job4j.ex;
 
 public class UserStore {
     public static User findUser(User[] users, String login) throws UserNotFoundException {
-        if (users == null || login == null)
+        if (users == null || login == null) {
             throw new UserNotFoundException("User is not found");
-        return null;
+        }
+            return null;
     }
 
     public static boolean validate(User user) throws UserInvalidException {
-        if (user == null)
+        if (user == null) {
             throw new UserInvalidException("User is not validate or name short than 3 letters");
-        return false;
+        }
+            return false;
     }
 
     public static void main(String[] args) throws UserNotFoundException {
