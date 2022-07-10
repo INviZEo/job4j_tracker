@@ -14,7 +14,7 @@ public class UserStore {
         if (!user.isValid() || user.getUsername().length() < 3) {
             throw new UserInvalidException("User is not validate or name short than 3 letters");
         }
-        return user.isValid();
+        return true;
     }
 
     public static void main(String[] args) throws UserNotFoundException {
