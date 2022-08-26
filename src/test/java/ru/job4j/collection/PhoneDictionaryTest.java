@@ -17,6 +17,7 @@ public class PhoneDictionaryTest {
         ArrayList<Person> persons = phones.find("Petr");
         assertThat(persons.get(0).getSurname()).isEqualTo("Arsentev");
     }
+
     @Test
     public void whenKeyNotFound() {
         PhoneDictionary phones = new PhoneDictionary();
