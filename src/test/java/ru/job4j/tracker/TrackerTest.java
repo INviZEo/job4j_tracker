@@ -1,6 +1,9 @@
 package ru.job4j.tracker;
 
 import org.junit.Test;
+
+import java.util.List;
+
 import static org.hamcrest.core.IsNull.nullValue;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -13,17 +16,17 @@ public class TrackerTest {
         Item item = new Item();
         item.setName("test1");
         tracker.add(item);
-        Item result = tracker.findById(item.getId());
-        assertThat(result.getName(), is(item.getName()));
+        List<Item> result = tracker.findById(item.getId());
+        assertThat(result.get(0).getName(), is(item.getName()));
     }
 
     @Test
     public void whenTestFindById() {
         Tracker tracker = new Tracker();
         Item bug = new Item("Bug");
-        Item item = tracker.add(bug);
-        Item result = tracker.findById(item.getId());
-        assertThat(result.getName(), is(item.getName()));
+        List<Item> item = tracker.add(bug);
+        List<Item> result = tracker.findById(item.get(0).getId());
+        assertThat(result.get(0).getName(), is(item.get(0).getName()));
     }
 
     @Test
@@ -33,7 +36,7 @@ public class TrackerTest {
         Item second = new Item("Second");
         tracker.add(first);
         tracker.add(second);
-        Item result = tracker.findAll()[0];
+        Item result = tracker.findAll().get(0);
         assertThat(result.getName(), is(first.getName()));
     }
 
@@ -75,7 +78,7 @@ public class TrackerTest {
         Item bugWithDesc = new Item();
         bugWithDesc.setName("Bug with description");
         tracker.replace(id, bugWithDesc);
-        assertThat(tracker.findById(id).getName(), is("Bug with description"));
+        assertThat(tracker.findById(id).get(0).getName(), is("Bug with description"));
     }
 
     @Test
