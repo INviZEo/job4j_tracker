@@ -5,8 +5,8 @@ import org.junit.Test;
 import java.util.List;
 
 import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.nullValue;
 import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
 
 public class StartUITest {
 
@@ -29,33 +29,33 @@ public class StartUITest {
     public void whenEditItem() {
         Output out = new StubOutput();
         Tracker tracker = new Tracker();
-        List<Item> item = tracker.add(new Item("Replaced item"));
+        Item item = tracker.add(new Item("Replaced item"));
         String replacedName = "New item name";
         Input in = new StubInput(
-                new String[] {"0", String.valueOf(item.get(0).getId()), replacedName, "1"}
+                new String[] {"0", String.valueOf(item.getId()), replacedName, "1"}
         );
         List<UserAction> actions = List.of(
                 new ReplaceAction(out),
                 new ExitAction(out)
         );
         new StartUI(out).init(in, tracker, actions);
-        assertThat(tracker.findById(1).get(0).getName(), is(replacedName));
+        assertThat(tracker.findById(1).getName(), is(replacedName));
     }
 
     @Test
     public void whenDeleteItem() {
         Output out = new StubOutput();
         Tracker tracker = new Tracker();
-        List<Item> item = tracker.add(new Item("Deleted item"));
+        Item item = tracker.add(new Item("Deleted item"));
         Input in = new StubInput(
-                new String[] {"0", String.valueOf(item.get(0)), "1"}
+                new String[] {"0", String.valueOf(item.getId()), "1"}
         );
         List<UserAction> actions = List.of(
                 new DeleteAction(out),
                 new ExitAction(out)
         );
         new StartUI(out).init(in, tracker, actions);
-        assertTrue(tracker.findById(0).isEmpty());
+        assertThat(tracker.findById(0), is(nullValue()));
     }
 
     @Test
@@ -80,10 +80,10 @@ public class StartUITest {
     public void whenReplaceItemTestOutputIsSuccessfully() {
         Output out = new StubOutput();
         Tracker tracker = new Tracker();
-        List<Item> items = tracker.add(new Item("test1"));
+        Item items = tracker.add(new Item("test1"));
         String replaceName = "New Test Name";
         Input in = new StubInput(
-                new String[] {"0", String.valueOf(items.get(0)), replaceName, "1"}
+                new String[] {"0", String.valueOf(items.getId()), replaceName, "1"}
         );
         List<UserAction> actions = List.of(
                 new ReplaceAction(out),
@@ -108,8 +108,8 @@ public class StartUITest {
     public void findAllAction() {
         Output out = new StubOutput();
         Tracker tracker = new Tracker();
-        List<Item> items = tracker.add(new Item("hyi"));
-        List<Item> items1 = tracker.add(new Item("gei"));
+        Item items = tracker.add(new Item("hyi"));
+        Item items1 = tracker.add(new Item("gei"));
         Input in = new StubInput(
                 new String[] {"0", "1"}
         );
@@ -137,9 +137,9 @@ public class StartUITest {
     public void findActionByName() {
         Output out = new StubOutput();
         Tracker tracker = new Tracker();
-        List<Item> items = tracker.add(new Item("test1"));
+        Item items = tracker.add(new Item("test1"));
         Input in = new StubInput(
-                new String[] {"0", items.get(0).getName(), "1"}
+                new String[] {"0", items.getName(), "1"}
         );
         List<UserAction> actions = List.of(
                 new FindActionByName(out),
@@ -163,9 +163,9 @@ public class StartUITest {
     public void findActionById() {
         Output out = new StubOutput();
         Tracker tracker = new Tracker();
-        List<Item> items = tracker.add(new Item("test1"));
+        Item items = tracker.add(new Item("test1"));
         Input in = new StubInput(
-                new String[] {"0", String.valueOf(items.get(0)), "1"}
+                new String[] {"0", String.valueOf(items.getId()), "1"}
         );
         List<UserAction> actions = List.of(
                 new FindActionById(out),

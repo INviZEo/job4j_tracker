@@ -17,11 +17,11 @@ public final class SingleTracker {
         return instance;
     }
 
-    public List<Item> add(Item item) {
+    public Item add(Item item) {
         return tracker.add(item);
     }
 
-    public List<Item> findById(int id) {
+    public Item findById(int id) {
         return tracker.findById(id);
     }
 
@@ -33,7 +33,7 @@ public final class SingleTracker {
         return tracker.delete(id);
     }
 
-    public Item[] findByName(String name) {
+    public List<Item> findByName(String name) {
         return tracker.findByName(name);
     }
 

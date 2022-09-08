@@ -16,17 +16,17 @@ public class TrackerTest {
         Item item = new Item();
         item.setName("test1");
         tracker.add(item);
-        List<Item> result = tracker.findById(item.getId());
-        assertThat(result.get(0).getName(), is(item.getName()));
+        Item result = tracker.findById(item.getId());
+        assertThat(result.getName(), is(item.getName()));
     }
 
     @Test
     public void whenTestFindById() {
         Tracker tracker = new Tracker();
         Item bug = new Item("Bug");
-        List<Item> item = tracker.add(bug);
-        List<Item> result = tracker.findById(item.get(0).getId());
-        assertThat(result.get(0).getName(), is(item.get(0).getName()));
+        Item item = tracker.add(bug);
+        Item result = tracker.findById(item.getId());
+        assertThat(result.getName(), is(item.getName()));
     }
 
     @Test
@@ -50,8 +50,8 @@ public class TrackerTest {
         tracker.add(new Item("First"));
         tracker.add(new Item("Second"));
         tracker.add(new Item("First"));
-        Item[] result = tracker.findByName(first.getName());
-        assertThat(result.length, is(3));
+        List<Item> result = tracker.findByName(first.getName());
+        assertThat(result.size(), is(3));
     }
 
     @Test
@@ -64,8 +64,8 @@ public class TrackerTest {
         tracker.add(new Item("First"));
         tracker.add(new Item("Second"));
         tracker.add(new Item("First"));
-        Item[] result = tracker.findByName(second.getName());
-        assertThat(result[1].getName(), is(second.getName()));
+        List<Item> result = tracker.findByName(second.getName());
+        assertThat(result.get(1).getName(), is(second.getName()));
     }
 
     @Test
@@ -78,7 +78,7 @@ public class TrackerTest {
         Item bugWithDesc = new Item();
         bugWithDesc.setName("Bug with description");
         tracker.replace(id, bugWithDesc);
-        assertThat(tracker.findById(id).get(0).getName(), is("Bug with description"));
+        assertThat(tracker.findById(id).getName(), is("Bug with description"));
     }
 
     @Test
