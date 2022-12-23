@@ -13,6 +13,26 @@ public class BankServiceTest {
     }
 
     @Test
+    public void deleteUserIsTrue() {
+        User first = new User("3434", "Petr Arsentev");
+        User second = new User("3434", "Petr Arsentev");
+        BankService bank = new BankService();
+        bank.addUser(first);
+        bank.addUser(second);
+        assertThat(bank.deleteUser("3434")).isTrue();
+    }
+
+    @Test
+    public void deleteUserIsFalse() {
+        User first = new User("3434", "Petr Arsentev");
+        User second = new User("3434", "Petr Arsentev");
+        BankService bank = new BankService();
+        bank.addUser(first);
+        bank.addUser(second);
+        assertThat(bank.deleteUser("343434")).isFalse();
+    }
+
+    @Test
     public void whenEnterInvalidPassport() {
         User user = new User("3434", "Petr Arsentev");
         BankService bank = new BankService();
