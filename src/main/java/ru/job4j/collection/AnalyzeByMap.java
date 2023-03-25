@@ -69,11 +69,8 @@ public class AnalyzeByMap {
         List<Label> rsl = new ArrayList<>();
         for (Pupil subj : pupils)  {
             for (Subject j : subj.subjects()) {
-                if (!linkedHashMap.containsKey(j.name())) {
-                    linkedHashMap.put(j.name(), j.score());
-                } else {
-                    linkedHashMap.put(j.name(), linkedHashMap.get(j.name()) + j.score());
-                }
+                    linkedHashMap.put(j.name(), linkedHashMap.getOrDefault(j.name(), 0) + j.score());
+
             }
         }
         for (String i : linkedHashMap.keySet()) {
