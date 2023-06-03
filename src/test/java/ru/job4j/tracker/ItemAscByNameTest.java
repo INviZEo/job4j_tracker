@@ -19,6 +19,6 @@ public class ItemAscByNameTest {
          List<Item> items = Arrays.asList(item0, item1, item2);
          Collections.sort(items, new ItemAscByName());
          List<Item> expected = Arrays.asList(item1, item2, item0);
-        Assert.assertArrayEquals(new List[]{items}, new List[]{expected});
+        Assert.assertEquals(items, expected);
     }
 }

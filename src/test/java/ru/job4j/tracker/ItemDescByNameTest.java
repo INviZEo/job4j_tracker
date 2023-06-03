@@ -19,7 +19,7 @@ public class ItemDescByNameTest {
         List<Item> items = Arrays.asList(item0, item1, item2);
         Collections.sort(items, new ItemDescByName());
         List<Item> expected = Arrays.asList(item0, item2, item1);
-        Assert.assertArrayEquals(new List[]{items}, new List[]{expected});
+        Assert.assertEquals(items, expected);
 
     }
 }
