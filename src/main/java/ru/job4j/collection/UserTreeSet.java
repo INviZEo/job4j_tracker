@@ -2,7 +2,7 @@ package ru.job4j.collection;
 
 import java.util.Objects;
 
-public class UserTreeSet implements Comparable<UserTreeSet>{
+public class UserTreeSet implements Comparable<UserTreeSet> {
     private String name;
     private int age;
 
