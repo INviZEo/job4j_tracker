@@ -28,9 +28,8 @@ public class FunctionalInterfaces {
         Consumer<String> con = (s) -> System.out.println(s);
         Function<String, String> func = (s) -> s.toUpperCase(Locale.ROOT);
         for (String str : strings) {
-            con.accept(func.apply("ya nichego ne ponimay"));
+            con.accept(func.apply(str));
         }
-            System.out.println(strings);
     }
 }
  
