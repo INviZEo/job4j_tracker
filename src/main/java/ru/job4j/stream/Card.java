@@ -13,12 +13,15 @@ public class Card {
         this.value = value;
     }
 
+    @Override
+    public String toString() {
+        return "card " + suit + " " + value;
+    }
+
     public static void main(String[] args) {
-        List<Value> values = new ArrayList<>();
-        List<Suit> suits = new ArrayList<>();
         Stream.of(Suit.values())
-                .flatMap(value -> Stream.of(suits)
-                .map(suit -> values + " " + suit))
+                .flatMap(suit -> Stream.of(Value.values())
+                .map(value -> new Card(suit, value)))
                 .forEach(System.out::println);
     }
 }
