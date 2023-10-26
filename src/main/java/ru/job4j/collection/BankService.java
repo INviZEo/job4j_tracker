@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Stream;
 
 /**
  * Класс описвает работу банковского сервиса который может : добавлять\удалять пользователей,
@@ -56,14 +57,11 @@ public class BankService {
      * @return - возвращает аккаунт пользователя или null
      */
     public User findByPassport(String passport) {
-        User pass = null;
-        for (User users : users.keySet()) {
-            if (passport.equals(users.getPassport())) {
-                pass = users;
-                break;
-            }
-        }
-        return pass;
+        return users.keySet()
+                .stream()
+                .filter(p -> p.getPassport().equals(passport))
+                .findFirst()
+                .orElse(null);
     }
 
     /**
@@ -73,18 +71,15 @@ public class BankService {
      * @return - возвраещает аккаунт пользователя или null
      */
     public AccountBank findByRequisite(String passport, String requisite) {
-        User user = findByPassport(passport);
-        AccountBank result = null;
-        if (user != null) {
-            List<AccountBank> accountBanks = users.get(user);
-            for (AccountBank accountBank1 : accountBanks) {
-                if (accountBank1.getRequisite().equals(requisite)) {
-                    result = accountBank1;
-                    break;
-                }
-            }
+        var passport1 = findByPassport(passport);
+        if (passport1 == null) {
+            return null;
         }
-        return result;
+        return users.get(passport1)
+                .stream()
+                .filter(aB -> aB.getRequisite().equals(requisite))
+                .findFirst()
+                .orElse(null);
     }
 
     /**
