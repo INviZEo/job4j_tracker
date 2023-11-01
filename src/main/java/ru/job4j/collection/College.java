@@ -3,6 +3,7 @@ package ru.job4j.collection;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Stream;
 
 public class College {
 
@@ -13,13 +14,6 @@ public class College {
     }
 
     public Optional<Student> findByAccount(String account) {
-        Optional<Student> rsl = Optional.empty();
-        for (Student s : students.keySet()) {
-            if (s.account().equals(account)) {
-                rsl = Optional.of(s);
-                break;
-            }
-        }
         return students.keySet()
                 .stream()
                 .filter(s -> s.account().equals(account))
