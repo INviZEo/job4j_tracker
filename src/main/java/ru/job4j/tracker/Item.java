@@ -27,13 +27,18 @@ public class Item implements Comparable<Item> {
         this.name = name;
     }
 
-    public Item(int id, String name, LocalDateTime formatter) {
+    public Item(int id, String name, LocalDateTime created) {
         this.id = id;
         this.name = name;
+        this.created = created.withNano(0);
     }
 
     public LocalDateTime getCreated() {
         return created;
+    }
+
+    public void setCreated(LocalDateTime created) {
+        this.created = created;
     }
 
     public int getId() {
@@ -61,7 +66,7 @@ public class Item implements Comparable<Item> {
             return false;
         }
         Item item = (Item) o;
-        return id == item.id && Objects.equals(created, item.created) && Objects.equals(name, item.name);
+        return id == item.id && Objects.equals(created.withNano(0), item.created.withNano(0)) && Objects.equals(name, item.name);
     }
 
     @Override
