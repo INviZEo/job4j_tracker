@@ -31,4 +31,15 @@ public class Comment {
     protected void finalize() throws Throwable {
         super.finalize();
     }
+
+    @Override
+    public String toString() {
+        return "Comment{"
+                + "text='"
+                + text
+                + '\''
+                + ", user="
+                + user
+                + '}';
+    }
 }

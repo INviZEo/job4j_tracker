@@ -35,32 +35,40 @@ public class Menu {
     private static void start(CommentGenerator commentGenerator, Scanner scanner, UserGenerator userGenerator, PostStore postStore) {
         boolean run = true;
         while (run) {
-            System.out.println(MENU);
-            System.out.println(SELECT);
-            int userChoice = Integer.parseInt(scanner.nextLine());
-            System.out.println(userChoice);
-            if (ADD_POST == userChoice) {
-                System.out.println(TEXT_OF_POST);
-                String text = scanner.nextLine();
-                userGenerator.generate();
-                commentGenerator.generate();
-                postStore.add(new Post(text, CommentGenerator.getComments()));
-            } else if (ADD_MANY_POST == userChoice) {
-                System.out.println(TEXT_OF_POST);
-                String text = scanner.nextLine();
-                System.out.println(COUNT);
-                String count = scanner.nextLine();
-                for (int i = 0; i < Integer.parseInt(count); i++) {
-                    createPost(commentGenerator, userGenerator, postStore, text);
+            try {
+                System.out.println(MENU);
+                System.out.println(SELECT);
+                int userChoice = Integer.parseInt(scanner.nextLine());
+                System.out.println(userChoice);
+                switch (userChoice) {
+                    case ADD_POST:
+                        System.out.println(TEXT_OF_POST);
+                        String postSolo = scanner.nextLine();
+                        userGenerator.generate();
+                        commentGenerator.generate();
+                        postStore.add(new Post(postSolo, CommentGenerator.getComments()));
+                        break;
+                    case ADD_MANY_POST:
+                        System.out.println(TEXT_OF_POST);
+                        String postMultiple = scanner.nextLine();
+                        System.out.println(COUNT);
+                        String count = scanner.nextLine();
+                        for (int i = 0; i < Integer.parseInt(count); i++) {
+                            createPost(commentGenerator, userGenerator, postStore, postMultiple);
+                        }
+                    case SHOW_ALL_POSTS:
+                        System.out.println(PostStore.getPosts());
+                        break;
+                    case DELETE_POST:
+                        postStore.removeAll();
+                        System.out.println("Все посты были удалены.");
+                        break;
+                    default:
+                        run = false;
+                        System.out.println(EXIT);
                 }
-            } else if (SHOW_ALL_POSTS == userChoice) {
-                System.out.println(PostStore.getPosts());
-            } else if (DELETE_POST == userChoice) {
-                System.out.println(DELETE_POST);
-                postStore.removeAll();
-            } else {
-                run = false;
-                System.out.println(EXIT);
+            } catch (NumberFormatException e) {
+                System.out.println("Неверный ввод. Пожалуйста, введите действительное число.");
             }
         }
     }

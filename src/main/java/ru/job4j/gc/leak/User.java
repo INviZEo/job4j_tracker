@@ -20,4 +20,13 @@ public class User {
     protected void finalize() throws Throwable {
         super.finalize();
     }
+
+    @Override
+    public String toString() {
+        return "User{"
+                + "name='"
+                + name
+                + '\''
+                + '}';
+    }
 }
