@@ -18,7 +18,8 @@ public abstract class AbstractCache<K, V> {
 
     public final V get(K key) throws FileNotFoundException {
         SoftReference<V> softReference = cache.getOrDefault(key, new SoftReference<>(null));
-        if (softReference.get() == null) {
+        Object cacheRef = softReference.get();
+        if (cacheRef == null) {
             put(key, load(key));
         }
         return cache.get(key).get();
