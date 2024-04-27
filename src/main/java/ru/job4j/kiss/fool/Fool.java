@@ -23,20 +23,15 @@ public class Fool {
         int startAt = 1;
         Scanner input = new Scanner(System.in);
         while (startAt < 100) {
-            if (startAt % 3 == 0 && startAt % 5 == 0) {
-                System.out.println("FizzBuzz");
-            } else if (startAt % 3 == 0) {
-                System.out.println("Fizz");
-            } else if (startAt % 5 == 0) {
-                System.out.println("Buzz");
-            } else {
-                System.out.println(startAt);
-            }
-            startAt++;
+            System.out.println(startAt);
             String answer = input.nextLine();
-            if (!checkAnswer(startAt, answer)) {
+            if (checkAnswer(startAt, answer)) {
+                System.out.println(answer);
+            } else if (!checkAnswer(startAt, answer)) {
                 System.out.println("Ошибка. Начинай снова.");
                 startAt = 0;
+            } else {
+                System.out.println(startAt);
             }
             startAt++;
         }
