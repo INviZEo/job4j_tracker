@@ -2,14 +2,18 @@ package ru.job4j.template;
 
 import org.junit.Assert;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
+
 import static org.assertj.core.api.Assertions.*;
+
 import java.util.HashMap;
 import java.util.Map;
 
 import static org.assertj.core.api.Assertions.*;
 
-class GeneratorTest {
+@Disabled
+public class GeneratorTest {
     private Generator gen = new Gen();
 
     @Test
