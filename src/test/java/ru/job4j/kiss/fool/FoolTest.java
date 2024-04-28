@@ -10,37 +10,38 @@ class FoolTest {
 
     @Test
     public void checkFizzBuzz() {
-        boolean result = Fool.checkAnswer(15, "FizzBuzz");
-        Assertions.assertTrue(result);
+        Fool.Answer fool = new Fool.Answer(15);
+        Assertions.assertEquals("FizzBuzz", fool.checkAnswer());
     }
 
     @Test
     public void checkFizzBuzzFalse() {
-        boolean result = Fool.checkAnswer(16, "FizzBuzz");
-        Assertions.assertFalse(result);
+        Fool.Answer fool = new Fool.Answer(6);
+        Assertions.assertNotEquals("Buzz", fool.checkAnswer());
     }
 
     @Test
     public void checkFizz() {
-        boolean result = Fool.checkAnswer(3, "Fizz");
-        Assertions.assertTrue(result);
+        Fool.Answer fool = new Fool.Answer(3);
+        Assertions.assertEquals("Fizz", fool.checkAnswer());
     }
 
     @Test
     public void checkFizzFalse() {
-        boolean result = Fool.checkAnswer(4, "Fizz");
-        Assertions.assertFalse(result);
+        Fool.Answer fool = new Fool.Answer(7);
+        Assertions.assertNotEquals("Fizz", fool.checkAnswer());
     }
 
     @Test
     public void checkBuzz() {
-        boolean result = Fool.checkAnswer(5, "Buzz");
-        Assertions.assertTrue(result);
+        Fool.Answer fool = new Fool.Answer(5);
+        Assertions.assertEquals("Buzz", fool.checkAnswer());
     }
 
     @Test
     public void checkBuzzFalse() {
-        boolean result = Fool.checkAnswer(7, "Buzz");
-        Assertions.assertFalse(result);
+        Fool.Answer fool = new Fool.Answer(6);
+        Assertions.assertNotEquals("Buzz", fool.checkAnswer());
+
     }
 }
