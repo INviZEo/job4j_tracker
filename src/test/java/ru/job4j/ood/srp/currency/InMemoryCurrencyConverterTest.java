@@ -11,7 +11,7 @@ import static ru.job4j.ood.srp.currency.Currency.USD;
 
 class InMemoryCurrencyConverterTest {
     @Test
-    public void ConvertSalary() {
+    public void convertSalary() {
         Calendar now = Calendar.getInstance();
         Employee worker = new Employee("Denis", now, now, 2500);
         InMemoryCurrencyConverter converter = new InMemoryCurrencyConverter();

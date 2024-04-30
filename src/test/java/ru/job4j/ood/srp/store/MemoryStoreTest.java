@@ -14,7 +14,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class MemoryStoreTest {
 
     @Test
-    public void EmployeeOnSalary() {
+    public void employeeOnSalary() {
         MemoryStore store = new MemoryStore();
         Employee worker = new Employee("Ivan", 100);
         Employee worker1 = new Employee("Victor", 75);
