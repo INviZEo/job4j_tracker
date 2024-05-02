@@ -1,5 +1,7 @@
 package ru.job4j.ood.srp.model;
 
+import ru.job4j.ood.srp.currency.InMemoryCurrencyConverter;
+
 import java.util.Calendar;
 import java.util.Objects;
 
