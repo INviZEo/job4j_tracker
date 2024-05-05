@@ -1,5 +1,6 @@
 package ru.job4j.ood.ocp;
 
+import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -18,7 +19,7 @@ class ReportJSONTest {
     @Test
     public void testJSON() {
         MemoryStore store = new MemoryStore();
-        GsonBuilder gsonBuilder = new GsonBuilder();
+        Gson gson = new GsonBuilder().create();
         Calendar now = Calendar.getInstance();
         Employee worker = new Employee("Ivan", now, now, 100);
         store.add(worker);
@@ -32,9 +33,10 @@ class ReportJSONTest {
                 .append("\"Fired\"").append(":\"")
                 .append(parser.parse(worker.getFired())).append("\",")
                 .append("\"Salary\"").append(":\"")
-                .append(worker.getSalary()).append(":\"")
+                .append(worker.getSalary()).append("\"")
                 .append("}")
                 .append(System.lineSeparator());
+        gson.toJson(expected);
         assertThat(reportJSON.generate(employee -> true)).isEqualTo(expected);
     }
 }
