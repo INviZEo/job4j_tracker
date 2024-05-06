@@ -1,5 +1,6 @@
 package ru.job4j.ood.ocp;
 
+import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import ru.job4j.ood.srp.formatter.DateTimeParser;
 import ru.job4j.ood.srp.model.Employee;
@@ -23,13 +24,10 @@ public class ReportJSON implements Report {
 
     @Override
     public String generate(Predicate<Employee> filter) {
-        List<String> empl = new ArrayList<>();
-        for (Employee employee : store.findBy(filter)) {
-            empl.add(employee.getName());
-            empl.add(dateTimeParser.parse(employee.getHired()));
-            empl.add(dateTimeParser.parse(employee.getFired()));
-            empl.add(Double.valueOf(employee.getSalary()).toString());
-        }
-        return gsonBuilder.create().toJson(empl);
+        List<EmplDate> empl = store.findBy(filter).stream().map(EmplDate::new).toList();
+        Gson gson = new GsonBuilder()
+                .setPrettyPrinting()
+                .create();
+        return gson.toJson(empl);
     }
 }
