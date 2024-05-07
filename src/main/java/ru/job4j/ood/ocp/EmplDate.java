@@ -16,4 +16,11 @@ public class EmplDate {
         fired = dateFormat.format(employee.getFired().getTime());
         salary = employee.getSalary();
     }
+
+    public EmplDate(String name, String hired, String fired, double salary) {
+        this.name = name;
+        this.hired = hired;
+        this.fired = fired;
+        this.salary = salary;
+    }
 }

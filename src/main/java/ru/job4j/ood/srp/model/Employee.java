@@ -2,10 +2,13 @@ package ru.job4j.ood.srp.model;
 
 import ru.job4j.ood.srp.currency.InMemoryCurrencyConverter;
 
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.Calendar;
 import java.util.Objects;
 
 public class Employee {
+
     private String name;
     private Calendar hired;
     private Calendar fired;
