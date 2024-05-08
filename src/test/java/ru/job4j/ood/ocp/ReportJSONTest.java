@@ -19,9 +19,6 @@ class ReportJSONTest {
     @Test
     public void testJSON() {
         MemoryStore store = new MemoryStore();
-        Gson gson = new GsonBuilder()
-                .setPrettyPrinting()
-                .create();
         Calendar now = Calendar.getInstance();
         Employee worker = new Employee("Ivan", now, now, 100);
         Employee worker1 = new Employee("David", now, now, 300);
@@ -29,8 +26,20 @@ class ReportJSONTest {
         store.add(worker1);
         DateTimeParser<Calendar> parser = new ReportDateTimeParser();
         ReportJSON reportJSON = new ReportJSON(store, parser, new GsonBuilder());
-        List<EmplDate> emplDates = store.findBy(employee -> true).stream().map(EmplDate::new).toList();
-        String expected = gson.toJson(emplDates);
-        assertThat(reportJSON.generate(employee -> true)).isEqualTo((expected));
+        List<String> expected = List.of("[",
+                "{",
+                "\"name\": " + "\"" + worker.getName() + "\"" + ",",
+                "\"hired\": " + "\"" + parser.parse(worker.getHired()) + "\"" + ",",
+                "\"fired\": " + "\"" + parser.parse(worker.getFired()) + "\"" + ",",
+                "\"salary\": " + worker.getSalary(),
+                "},",
+                "{",
+                "\"name\": " + "\"" + worker1.getName() + "\"" + ",",
+                "\"hired\": " + "\"" + parser.parse(worker1.getHired()) + "\"" + ",",
+                "\"fired\": " + "\"" + parser.parse(worker1.getFired()) + "\"" + ",",
+                "\"salary\": " + worker1.getSalary(),
+                "}",
+                "]");
+        assertThat(reportJSON.generate(employee -> true)).contains((expected));
     }
 }

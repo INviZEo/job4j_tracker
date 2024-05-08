@@ -6,9 +6,8 @@ import javax.xml.bind.annotation.*;
 
 import java.util.List;
 
-@XmlRootElement
 public class Employees {
-    @XmlElement
+
     private List<EmplDate> employees;
 
     public Employees() {

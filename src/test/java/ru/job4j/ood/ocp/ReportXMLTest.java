@@ -12,10 +12,10 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import java.util.Calendar;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
-import static org.junit.Assert.assertEquals;
-@Disabled
+
 class ReportXMLTest {
 
     @Test
@@ -26,9 +26,22 @@ class ReportXMLTest {
         Marshaller marshaller = context.createMarshaller();
         marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
         Employee worker = new Employee("Ivan", now, now, 100);
+        Employee worker1 = new Employee("David", now, now, 300);
         store.add(worker);
+        store.add(worker1);
         DateTimeParser<Calendar> parser = new ReportDateTimeParser();
-        ReportXML report = new ReportXML(store, parser, context);
-        assertThat(report.generate(employee -> true)).isEqualTo(" ");
+        List<String> expected = List.of("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>",
+                "<employees>",
+                "<employee name=\"" + worker.getName() + "\" " + "salary=\"" + worker.getSalary() + "\">",
+                "<hired>" + parser.parse(worker.getHired()) + "</hired>",
+                "<fired>" + parser.parse(worker.getFired()) + "</fired>",
+                "</employee>",
+                "<employee name=\"" + worker1.getName() + "\" " + "salary=\"" + worker1.getSalary() + "\">",
+                "<hired>" + parser.parse(worker1.getHired()) + "</hired>",
+                "<fired>" + parser.parse(worker1.getFired()) + "</fired>",
+                "</employee>",
+                "</employees>");
+        ReportXML report = new ReportXML(store);
+        assertThat(report.generate(employee -> true)).contains(expected);
     }
 }
