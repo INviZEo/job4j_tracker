@@ -26,20 +26,21 @@ class ReportJSONTest {
         store.add(worker1);
         DateTimeParser<Calendar> parser = new ReportDateTimeParser();
         ReportJSON reportJSON = new ReportJSON(store, parser, new GsonBuilder());
-        List<String> expected = List.of("[",
-                "{",
-                "\"name\": " + "\"" + worker.getName() + "\"" + ",",
-                "\"hired\": " + "\"" + parser.parse(worker.getHired()) + "\"" + ",",
-                "\"fired\": " + "\"" + parser.parse(worker.getFired()) + "\"" + ",",
-                "\"salary\": " + worker.getSalary(),
-                "},",
-                "{",
-                "\"name\": " + "\"" + worker1.getName() + "\"" + ",",
-                "\"hired\": " + "\"" + parser.parse(worker1.getHired()) + "\"" + ",",
-                "\"fired\": " + "\"" + parser.parse(worker1.getFired()) + "\"" + ",",
-                "\"salary\": " + worker1.getSalary(),
-                "}",
-                "]");
-        assertThat(reportJSON.generate(employee -> true)).contains((expected));
+        String expected = String.format("""
+              [
+                {
+                  "name": "Ivan",
+                  "hired": "%s",
+                  "fired": "%s",
+                  "salary": 100.0
+                },
+                {
+                  "name": "David",
+                  "hired": "%s",
+                  "fired": "%s",
+                  "salary": 300.0
+                }
+              ]""", parser.parse(now), parser.parse(now), parser.parse(now), parser.parse(now));
+        assertThat(reportJSON.generate(employee -> true)).isEqualTo((expected));
     }
 }

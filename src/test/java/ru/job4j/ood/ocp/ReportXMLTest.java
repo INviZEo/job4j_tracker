@@ -31,46 +31,19 @@ class ReportXMLTest {
         store.add(worker);
         store.add(worker1);
         DateTimeParser<Calendar> parser = new ReportDateTimeParser();
-        String separator = System.lineSeparator();
         StringBuilder expected = new StringBuilder()
-                .append("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>")
-                .append(separator)
-                .append("<employees>")
-                .append(System.lineSeparator())
-                .append("<employee name=\"")
-                .append(worker.getName())
-                .append("\" salary=\"")
-                .append(worker.getSalary())
-                .append("\">")
-                .append(System.lineSeparator())
-                .append("    <hired>")
-                .append(parser.parse(worker.getHired()))
-                .append("</hired>")
-                .append(System.lineSeparator())
-                .append("    <fired>")
-                .append(parser.parse(worker.getFired()))
-                .append("</fired>")
-                .append(System.lineSeparator())
-                .append("</employee>")
-                .append(System.lineSeparator())
-                .append("<employee name=\"")
-                .append(worker1.getName())
-                .append("\" salary=\"")
-                .append(worker1.getSalary())
-                .append("\">")
-                .append(System.lineSeparator())
-                .append("    <hired>")
-                .append(parser.parse(worker1.getHired()))
-                .append("</hired>")
-                .append(System.lineSeparator())
-                .append("    <fired>")
-                .append(parser.parse(worker1.getFired()))
-                .append("</fired>")
-                .append(System.lineSeparator())
-                .append("</employee>")
-                .append(System.lineSeparator())
-                .append("</employees>");
+                .append("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n")
+                .append("<employees>\n")
+                .append(String.format("    <employee name=\"%s\" salary=\"%s\">\n", worker.getName(), worker.getSalary()))
+                .append(String.format("        <hired>%s</hired>\n", parser.parse(worker.getHired())))
+                .append(String.format("        <fired>%s</fired>\n", parser.parse(worker.getHired())))
+                .append("    </employee>\n")
+                .append(String.format("    <employee name=\"%s\" salary=\"%s\">\n", worker1.getName(), worker1.getSalary()))
+                .append(String.format("        <hired>%s</hired>\n", parser.parse(worker1.getHired())))
+                .append(String.format("        <fired>%s</fired>\n", parser.parse(worker1.getHired())))
+                .append("    </employee>\n")
+                .append("</employees>\n");
         ReportXML report = new ReportXML(store);
-        assertThat(report.generate(employee -> true)).contains(expected.toString());
+        assertThat(report.generate(employee -> true)).isEqualTo(expected.toString());
     }
 }
