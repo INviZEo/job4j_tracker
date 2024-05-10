@@ -14,13 +14,12 @@ import java.util.Objects;
 @XmlRootElement(name = "Employee")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Employee {
-    @XmlAttribute
+
     private String name;
     @XmlJavaTypeAdapter(CalendarAdapterXml.class)
     private Calendar hired;
     @XmlJavaTypeAdapter(CalendarAdapterXml.class)
     private Calendar fired;
-    @XmlAttribute
     private double salary;
 
     public Employee() {

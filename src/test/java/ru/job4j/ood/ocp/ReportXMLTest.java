@@ -1,7 +1,5 @@
 package ru.job4j.ood.ocp;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import ru.job4j.ood.srp.formatter.DateTimeParser;
 import ru.job4j.ood.srp.formatter.ReportDateTimeParser;
@@ -16,7 +14,6 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
 
-@Disabled
 class ReportXMLTest {
 
     @Test
