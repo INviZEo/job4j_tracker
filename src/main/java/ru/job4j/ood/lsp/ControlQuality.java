@@ -1,16 +1,21 @@
 package ru.job4j.ood.lsp;
 
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 public class ControlQuality {
-    Store store;
-    Trash trash;
 
-    public List<Food> foodTest(Food food) {
-        Food rsl = null;
-        if (food.createDate > 100) {
-            trash.getFood(food);
+    private List<Store> store;
+
+    public ControlQuality(List<Store> store) {
+        this.store = store;
+    }
+
+    public void foodTest(Food food, Calendar calendar) {
+        for (Store stores : store) {
+            stores.getFood(food, calendar);
         }
-        return null;
     }
 }
