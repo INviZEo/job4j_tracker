@@ -5,7 +5,7 @@ import java.util.Calendar;
 import java.util.List;
 
 public class Trash extends AbstractStore {
-    List<Food> trash = new ArrayList<>();
+    private List<Food> trash = new ArrayList<>();
 
     @Override
     public List<Food> getFood(Food food, Calendar calendar) {

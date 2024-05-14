@@ -22,10 +22,10 @@ class ControlQualityTest {
         store.add(shop);
         store.add(trash);
         store.add(warehouse);
-        Food food = new Food("«ина",
+        Food food = new Food("яблоко",
                 new GregorianCalendar(2024, Calendar.DECEMBER, 14),
                 new GregorianCalendar(2024, Calendar.JULY, 14), 100, 0);
-        Food food1 = new Food("√ораций",
+        Food food1 = new Food("√нилое €блоко",
                 new GregorianCalendar(2024, Calendar.DECEMBER, 14),
                 new GregorianCalendar(2024, Calendar.MAY, 14), 100, 0);
         ControlQuality controlQuality = new ControlQuality(store);
