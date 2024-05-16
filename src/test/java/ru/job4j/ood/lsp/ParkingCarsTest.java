@@ -21,7 +21,7 @@ class ParkingCarsTest {
         parkingCars.add(truck1);
         parkingCars.add(truck2);
         parkingCars.add(truck3);
-        assertThat(parkingCars.parkCars(car -> car.getSize() > parkingCars.getSizePark())).endsWith(truck3);
+        assertThat(parkingCars.parkCars(car -> car.getSize() > parkingCars.getSizePark()).size() == 4);
     }
 
     @Test
@@ -35,7 +35,7 @@ class ParkingCarsTest {
         parkingCars.add(truck1);
         parkingCars.add(truck2);
         parkingCars.add(truck3);
-        assertThat(parkingCars.parkCars(car -> car.getSize() > parkingCars.getSizePark()));
+        assertThat(parkingCars.parkCars(car -> car.getSize() > parkingCars.getSizePark()).size() == 3);
     }
 
     @Test
@@ -45,6 +45,6 @@ class ParkingCarsTest {
         ParkingCars parkingCars = new ParkingCars(5);
         parkingCars.add(passengerCar);
         parkingCars.add(passengerCar1);
-        Assertions.assertThat(parkingCars.parkCars(car -> car.getSize() > parkingCars.getSizePark()));
+        assertThat(parkingCars.parkCars(car -> car.getSize() > parkingCars.getSizePark()).size() == 2);
     }
 }

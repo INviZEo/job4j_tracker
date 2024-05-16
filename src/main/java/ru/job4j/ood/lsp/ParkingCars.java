@@ -12,12 +12,17 @@ public class ParkingCars implements Parking {
     private final int sizePark;
     private final List<Car> cars = new ArrayList<>();
 
+    public ParkingCars(int sizePark) {
+        this.sizePark = sizePark;
+    }
+
     public int getSizePark() {
         return sizePark;
     }
 
-    public ParkingCars(int sizePark) {
-        this.sizePark = sizePark;
+
+    public List<Car> getCars() {
+        return cars;
     }
 
     @Override
