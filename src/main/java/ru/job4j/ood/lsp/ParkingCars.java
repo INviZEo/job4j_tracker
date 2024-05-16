@@ -20,7 +20,6 @@ public class ParkingCars implements Parking {
         return sizePark;
     }
 
-
     public List<Car> getCars() {
         return cars;
     }
