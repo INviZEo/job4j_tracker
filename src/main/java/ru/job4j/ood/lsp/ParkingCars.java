@@ -1,15 +1,34 @@
 package ru.job4j.ood.lsp;
 
+import ru.job4j.ood.srp.model.Employee;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 public class ParkingCars implements Parking {
 
-    int sizePark = 30;
+    private final int sizePark;
+    private final List<Car> cars = new ArrayList<>();
+
+    public int getSizePark() {
+        return sizePark;
+    }
+
+    public ParkingCars(int sizePark) {
+        this.sizePark = sizePark;
+    }
 
     @Override
-    public List<Car> parkCars(Car car) {
-        List<Car> parking = new ArrayList<>();
-        return parking;
+    public void add(Car car) {
+        cars.add(car);
+    }
+
+    @Override
+    public List<Car> parkCars(Predicate<Car> filter) {
+        return cars.stream()
+                .filter(filter)
+                .collect(Collectors.toList());
     }
 }
