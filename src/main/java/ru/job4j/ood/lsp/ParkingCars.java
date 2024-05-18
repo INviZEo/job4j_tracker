@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 
 public class ParkingCars implements Parking {
 
-    private final int sizePark;
+    private int sizePark;
     private final List<Car> cars = new ArrayList<>();
 
     public ParkingCars(int sizePark) {
@@ -18,6 +18,10 @@ public class ParkingCars implements Parking {
 
     public int getSizePark() {
         return sizePark;
+    }
+
+    public void setSizePark(int sizePark) {
+        this.sizePark = sizePark;
     }
 
     public List<Car> getCars() {
@@ -30,9 +34,13 @@ public class ParkingCars implements Parking {
     }
 
     @Override
-    public List<Car> parkCars(Predicate<Car> filter) {
-        return cars.stream()
-                .filter(filter)
-                .collect(Collectors.toList());
+    public List<Car> parkCars(int sizePark, Car car) {
+        LogicOfParking logicOfParking = new LogicOfParking();
+        if (logicOfParking.opportunityOfParking(getSizePark(), car)) {
+            cars.add(car);
+            sizePark = getSizePark() - car.getSize();
+            setSizePark(sizePark);
+        }
+        return cars;
     }
 }

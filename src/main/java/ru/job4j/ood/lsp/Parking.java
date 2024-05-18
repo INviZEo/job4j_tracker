@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.function.Predicate;
 
 public interface Parking {
-    List<Car> parkCars(Predicate<Car> filter);
+    List<Car> parkCars(int sizePark, Car car);
 
     void add(Car car);
 }
