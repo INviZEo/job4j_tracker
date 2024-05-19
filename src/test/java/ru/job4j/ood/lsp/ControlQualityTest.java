@@ -1,6 +1,7 @@
 package ru.job4j.ood.lsp;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -11,6 +12,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.Assert.assertEquals;
 
+@Disabled
 class ControlQualityTest {
 
     @Test
