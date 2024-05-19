@@ -2,17 +2,18 @@ package ru.job4j.ood.lsp;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 public class Trash extends AbstractStore {
-    private List<Food> trash = new ArrayList<>();
 
     @Override
-    public List<Food> getFood(Food food, Calendar calendar) {
-        if ((calendar.getTime().getTime() - food.getExpiredDate().getTime().getTime() * 100)
-                / (food.getExpiredDate().getTime().getTime() - food.getCreateDate().getTime().getTime()) > 25) {
-            trash.add(food);
+    public boolean add(Food food, double limit) {
+        boolean rsl = false;
+        if (limit > ONEHUNDRED) {
+            FOODS.add(food);
+            rsl = true;
         }
-        return trash;
+        return rsl;
     }
 }

@@ -5,5 +5,7 @@ import java.util.Calendar;
 import java.util.List;
 
 public interface Store {
-    List<Food> getFood(Food food, Calendar calendar);
+    List<Food> getAllFood();
+
+    boolean add(Food food, double limit);
 }

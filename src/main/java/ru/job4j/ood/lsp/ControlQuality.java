@@ -13,9 +13,11 @@ public class ControlQuality {
         this.store = store;
     }
 
-    public void foodTest(Food food, Calendar calendar) {
+    public void distribute(Food food, Calendar calendar) {
+        FoodCheck foodCheck = new FoodCheck();
         for (Store stores : store) {
-            stores.getFood(food, calendar);
+            double check = foodCheck.check(food, calendar);
+            stores.add(food, check);
         }
     }
 }

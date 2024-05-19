@@ -2,25 +2,24 @@ package ru.job4j.ood.lsp;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 public class Shop extends AbstractStore {
-    private List<Food> shopFood = new ArrayList<>();
 
     @Override
-    public List<Food> getFood(Food food, Calendar calendar) {
-        if ((calendar.getTime().getTime() - food.getExpiredDate().getTime().getTime() * 100)
-                / (food.getExpiredDate().getTime().getTime() - food.getCreateDate().getTime().getTime()) <= 25) {
-            shopFood.add(food);
+    public boolean add(Food food, double limit) {
+        boolean rsl = false;
+        if (limit >= TWENTYFIVE && limit <= SEVENTYFIVE) {
+            FOODS.add(food);
+            rsl = true;
         }
-        if ((calendar.getTime().getTime() - food.getExpiredDate().getTime().getTime() * 100)
-                / (food.getExpiredDate().getTime().getTime() - food.getCreateDate().getTime().getTime()) < 75
-                && (calendar.getTime().getTime() - food.getExpiredDate().getTime().getTime() * 100)
-                / (food.getExpiredDate().getTime().getTime() - food.getCreateDate().getTime().getTime()) > 100) {
+        if (limit > SEVENTYFIVE && limit < ONEHUNDRED) {
             food.setDiscount(0.2);
             food.setPrice(food.getPrice() - food.getPrice() * food.getDiscount());
-            shopFood.add(food);
+            FOODS.add(food);
+            rsl = true;
         }
-        return shopFood;
+        return rsl;
     }
 }
