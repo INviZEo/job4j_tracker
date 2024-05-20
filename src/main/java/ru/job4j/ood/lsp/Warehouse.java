@@ -10,8 +10,8 @@ public class Warehouse extends AbstractStore {
     @Override
     public boolean add(Food food, double limit) {
         boolean rsl = false;
-        if (limit < TWENTYFIVE) {
-            FOODS.add(food);
+        if (limit < TWENTYFIVE && limit > 0) {
+            foods.add(food);
             rsl = true;
         }
         return rsl;

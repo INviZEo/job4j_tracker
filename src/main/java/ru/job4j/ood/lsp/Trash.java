@@ -10,8 +10,8 @@ public class Trash extends AbstractStore {
     @Override
     public boolean add(Food food, double limit) {
         boolean rsl = false;
-        if (limit > ONEHUNDRED) {
-            FOODS.add(food);
+        if (limit > ONEHUNDRED || limit < 0) {
+            foods.add(food);
             rsl = true;
         }
         return rsl;

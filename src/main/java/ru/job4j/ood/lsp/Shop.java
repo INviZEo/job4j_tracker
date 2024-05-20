@@ -11,13 +11,13 @@ public class Shop extends AbstractStore {
     public boolean add(Food food, double limit) {
         boolean rsl = false;
         if (limit >= TWENTYFIVE && limit <= SEVENTYFIVE) {
-            FOODS.add(food);
+            foods.add(food);
             rsl = true;
         }
         if (limit > SEVENTYFIVE && limit < ONEHUNDRED) {
             food.setDiscount(0.2);
             food.setPrice(food.getPrice() - food.getPrice() * food.getDiscount());
-            FOODS.add(food);
+            foods.add(food);
             rsl = true;
         }
         return rsl;
