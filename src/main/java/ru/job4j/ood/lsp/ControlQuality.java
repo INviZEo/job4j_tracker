@@ -20,4 +20,13 @@ public class ControlQuality {
             stores.add(food, check);
         }
     }
+
+    public void resort(List<Store> stores, Food food, Calendar calendar) {
+        stores.addAll(store);
+        FoodCheck foodCheck = new FoodCheck();
+        for (Store stor : stores) {
+            double check = foodCheck.check(food, calendar);
+            stor.add(food, check);
+        }
+    }
 }
